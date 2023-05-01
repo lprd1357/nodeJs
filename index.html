@@ -10,7 +10,7 @@
 <body>
     <div>영어로 입력하세요.(Please enter English.)</div>
     <hr>
-    <form id="f1" method="POST" action="http://localhost:3000/">
+    <form id="f1" method="POST">
         <input id="name" type="text">
         <button onclick="goPost()"> 이미지 생성  </button>
     </form>
@@ -22,8 +22,8 @@
          function goPost() {
             event.preventDefault(); //새로고침 방지
             const name = document.getElementById("name").value;
-            //fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/figlet/${name}`)
-            fetch(`http://localhost:3000/`,
+            fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/`,
+            //fetch(`http://localhost:3000/`,
             {
                 method:"POST",
                 headers: {
@@ -45,8 +45,8 @@
         function go() {
             debugger;
             const name = document.getElementById("name").value;
-            //fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/figlet/${name}`)
-            fetch(`http://localhost:3000/`)
+            fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/figlet/${name}`)
+            //fetch(`http://localhost:3000/`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
