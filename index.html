@@ -1,3 +1,59 @@
-<!--script src="index.js"></script-->
 
-nodeJs
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>영어로 입력하세요.(Please enter English.)</div>
+    <hr>
+    <form id="f1" method="POST" action="http://localhost:3000/">
+        <input id="name" type="text">
+        <button onclick="goPost()"> 이미지 생성  </button>
+    </form>
+    <hr>
+    <pre><font face="Courier New" id="h1"></font></pre>
+
+
+    <script>
+         function goPost() {
+            event.preventDefault(); //새로고침 방지
+            const name = document.getElementById("name").value;
+            //fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/figlet/${name}`)
+            fetch(`http://localhost:3000/`,
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: "Test",
+                    body: "I am testing!",
+                    userId: 1,
+                    name:name
+                }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                document.getElementById("h1").innerHTML = data.data;
+            });
+        }
+        function go() {
+            debugger;
+            const name = document.getElementById("name").value;
+            //fetch(`https://port-0-nodejs-e9btb72mlh3hybn7.sel4.cloudtype.app/figlet/${name}`)
+            fetch(`http://localhost:3000/`)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                document.getElementById("h1").innerHTML = data.data;
+            });
+        }
+
+    </script>
+</body>
+</html>
